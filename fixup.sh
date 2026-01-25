@@ -4,10 +4,14 @@ esbuild --minify \
   --sourcemap \
   --bundle dist/commonjs/index.js \
   --outfile=dist/commonjs/index.min.js \
-  --format=cjs
+  --format=cjs \
+  --platform=node \
+  --external:log-mismatches
 
 esbuild --minify \
   --sourcemap \
   --bundle dist/esm/index.js \
   --outfile=dist/esm/index.min.js \
-  --format=esm
+  --format=esm \
+  --platform=node \
+  --external:log-mismatches
