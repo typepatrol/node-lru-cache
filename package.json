@@ -17,7 +17,7 @@
     "test": "c8 tap",
     "test:no-clean": "c8 --no-clean tap --disable-coverage",
     "test:clean": "rm -rf coverage .nyc_output",
-    "test:report": "c8 report --reporter=text --reporter=lcov",
+    "test:report": "node --max-old-space-size=8192 ./node_modules/.bin/c8 report --reporter=text --reporter=lcov",
     "snap": "tap",
     "preversion": "npm test",
     "postversion": "npm publish",
@@ -109,12 +109,13 @@
     ],
     "all": true,
     "include": [
-      "src/**/*.ts"
+      "dist/**/*.js"
     ],
     "exclude": [
       "**/*.d.ts",
+      "**/*.min.js",
       "test/**",
-      "dist/**"
+      "dist/**/*.test.js"
     ]
   }
 }
