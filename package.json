@@ -11,7 +11,7 @@
   "sideEffects": false,
   "scripts": {
     "build": "npm run prepare",
-    "prepare": "bash fixup.sh --platform=node",
+    "prepare": "tshy && bash fixup.sh",
     "pretest": "npm run prepare",
     "presnap": "npm run prepare",
     "test": "c8 tap",
