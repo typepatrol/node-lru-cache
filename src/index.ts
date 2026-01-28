@@ -2158,7 +2158,10 @@ export class LRUCache<K extends {}, V extends {}, FC = unknown> {
             oldVal && this.#isBackgroundFetch(oldVal) ?
               oldVal.__staleWhileFetching
             : oldVal
-          if (oldValue !== undefined) status.oldValue = oldValue
+          if (oldValue !== undefined){
+            // @ts-expect-error
+            status.oldValue = oldValue
+          }
         }
       } else if (status) {
         status.set = 'update'
@@ -2420,6 +2423,7 @@ export class LRUCache<K extends {}, V extends {}, FC = unknown> {
     ) => {
       const fmp = this.#fetchMethod?.(k, v, fetchOpts)
       if (fmp && fmp instanceof Promise) {
+        // @ts-expect-error
         fmp.then(v => res(v === undefined ? undefined : v), rej)
       }
       // ignored, we go until we finish, regardless.
